@@ -1,13 +1,13 @@
-export const IncompleteTodos = (props) => {
-  const { todos, onClickComplete, onClickDelete } = props;
+import React from "react";
+
+export const IncompleteTodos = ({ todos, onClickDelete }) => {
   return (
     <div>
-      <p>未完了のTODO</p>
       <ul>
-        {todos.map((todo, index) => (
-          <li key={todo}>
-            <p>{todo}</p>
-            <button onClick={() => onClickDelete(index)}>削除</button>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            {todo.id}:{todo.text}
+            <button onClick={() => onClickDelete(todo.id)}>削除</button>
           </li>
         ))}
       </ul>

@@ -5,19 +5,22 @@ import { IncompleteTodos } from "./components/IncompleteTodos";
 const Todo = () => {
   const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [serialId, setSerialId] = useState(1);
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
 
   const onClickAdd = () => {
     if (todoText === "") return;
-    const newTodos = [...incompleteTodos, todoText];
+    const newTodo = { id: serialId, text: todoText };
+    const newTodos = [...incompleteTodos, newTodo];
+
     setIncompleteTodos(newTodos);
     setTodoText("");
+    setSerialId(serialId + 1);
   };
 
-  const onClickDelete = (index) => {
-    const newTodos = [...incompleteTodos];
-    newTodos.splice(index, 1);
+  const onClickDelete = (id) => {
+    const newTodos = incompleteTodos.filter((todo) => todo.id !== id);
     setIncompleteTodos(newTodos);
   };
 
