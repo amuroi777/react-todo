@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputTodo } from "./components/InputTodo";
-import { IncompleteTodos } from "./components/IncompleteTodos";
+import IncompleteTodos from "./components/IncompleteTodos";
 
 const Todo = () => {
   const [todoText, setTodoText] = useState("");
@@ -27,10 +27,14 @@ const Todo = () => {
     setIncompleteTodos(newTodos);
   };
 
+  const onSaveEdit = (id, newText, newDetails) => {
+    setIncompleteTodos(incompleteTodos.map((todo) => (todo.id === id ? { ...todo, text: newText, details: newDetails } : todo)));
+  };
+
   return (
     <>
       <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} details={details} onChangeDetails={onChangeDetails} />
-      <IncompleteTodos todos={incompleteTodos} onClickDelete={onClickDelete} />
+      <IncompleteTodos todos={incompleteTodos} onClickDelete={onClickDelete} onSaveEdit={onSaveEdit} />
     </>
   );
 };
