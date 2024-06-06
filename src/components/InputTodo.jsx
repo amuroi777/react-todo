@@ -32,10 +32,10 @@ export const InputTodo = (props) => {
 
   return (
     <Box background={"blue.50"}>
-      <Box pt={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center" w={"368px"} mx="auto">
-        <Box mb={4} textAlign="center">
+      <Box pt={10} display="flex" flexDirection="column" alignItems="left" justifyContent="center" w={"368px"} mx="auto">
+        <Box mb={4}>
           <label>
-            <Text fontSize="3xl" fontWeight="bold">
+            <Text fontSize="3xl" fontWeight="bold" textAlign="center">
               TODO
             </Text>
             <Input placeholder="タイトル" value={todoText} onChange={handleTitleChange} mt={2} />
@@ -46,7 +46,7 @@ export const InputTodo = (props) => {
         <Input placeholder="詳細" value={details} onChange={handleDetailsChange} mb={4} />
         {detailsError && <Text color="red.500">100文字以内で入力してください。</Text>}
 
-        <Stack direction="row" spacing={4} textAlign="center">
+        <Stack direction="row" justify="center" spacing={4}>
           <Button mt={7} mb={10} colorScheme="teal" variant="solid" onClick={onClick}>
             追加
           </Button>
