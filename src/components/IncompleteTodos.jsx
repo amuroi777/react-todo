@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { List, ListItem, Button, Box } from "@chakra-ui/react";
+import { List, ListItem, Button, Box, Select } from "@chakra-ui/react";
 import EditTodo from "./EditTodo";
 
-const IncompleteTodos = ({ todos, onClickDelete, onSaveEdit }) => {
+const IncompleteTodos = ({ todos, onClickDelete, onSaveEdit, onStatusChange }) => {
   const [editingTodoId, setEditingTodoId] = useState(null);
 
   const handleEditClick = (id) => {
@@ -34,6 +34,11 @@ const IncompleteTodos = ({ todos, onClickDelete, onSaveEdit }) => {
                 <Button onClick={() => onClickDelete(todo.id)} colorScheme="red" ml={2}>
                   削除
                 </Button>
+                <Select value={todo.status} onChange={(e) => onStatusChange(todo.id, e)} ml={2} w="150px">
+                  <option value="notStarted">未着手</option>
+                  <option value="inProgress">作業中</option>
+                  <option value="done">完了</option>
+                </Select>
               </Box>
             )}
           </ListItem>
