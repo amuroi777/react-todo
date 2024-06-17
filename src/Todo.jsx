@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { InputTodo } from "./components/InputTodo";
-import IncompleteTodos from "./components/IncompleteTodos";
 import StatusTodo from "./components/StatusTodo";
 
 const Todo = () => {
@@ -41,7 +40,6 @@ const Todo = () => {
     <>
       <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} details={details} onChangeDetails={onChangeDetails} />
       <StatusTodo todos={incompleteTodos} setTodos={setIncompleteTodos} />
-      <IncompleteTodos todos={incompleteTodos} onClickDelete={onClickDelete} onSaveEdit={onSaveEdit} onStatusChange={onStatusChange} />
     </>
   );
 };

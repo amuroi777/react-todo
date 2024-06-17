@@ -20,8 +20,8 @@ const EditTodo = (props) => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" w={"368px"} mx="auto">
-      <Input placeholder="新しいタイトル" value={editText} onChange={handleEditTextChange} mt={2} mb={2} />
-      <Input placeholder="新しい詳細" value={editDetails} onChange={handleEditDetailsChange} mt={2} mb={2} />
+      <Input placeholder="タイトル編集" value={editText} onChange={handleEditTextChange} mt={2} mb={2} />
+      <Input placeholder="詳細編集" value={editDetails} onChange={handleEditDetailsChange} mt={2} mb={2} />
       <Box display="flex" justifyContent="space-between" w="100%">
         <Button colorScheme="teal" onClick={handleSave} mt={2}>
           保存
