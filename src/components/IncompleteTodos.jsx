@@ -39,6 +39,9 @@ const IncompleteTodos = ({ todos, onClickDelete, onSaveEdit, onStatusChange }) =
                   <option value="inProgress">作業中</option>
                   <option value="done">完了</option>
                 </Select>
+                <Box ml={2}>
+                  作成日: {todo.created} {todo.updated && `更新日: ${todo.updated}`}
+                </Box>
               </Box>
             )}
           </ListItem>

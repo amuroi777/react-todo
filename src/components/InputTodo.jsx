@@ -2,7 +2,7 @@ import { Button, Stack, Box, Text, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
 export const InputTodo = (props) => {
-  const { todoText, details, onChange, onChangeDetails, onClick } = props;
+  const { todoText, details, onChange, onChangeDetails, onClick, disabled } = props;
   const [titleLength, setTitleLength] = useState(todoText.length);
   const [detailsLength, setDetailsLength] = useState(details.length);
   const [titleError, setTitleError] = useState(false);
@@ -38,16 +38,16 @@ export const InputTodo = (props) => {
             <Text fontSize="3xl" fontWeight="bold" textAlign="center">
               TODO
             </Text>
-            <Input placeholder="タイトル" value={todoText} onChange={handleTitleChange} mt={2} />
+            <Input disabled={disabled} placeholder="タイトル" value={todoText} onChange={handleTitleChange} mt={2} />
             {titleError && <Text color="red.500">50文字以内で入力してください。</Text>}
           </label>
         </Box>
 
-        <Input placeholder="詳細" value={details} onChange={handleDetailsChange} mb={4} />
+        <Input disabled={disabled} placeholder="詳細" value={details} onChange={handleDetailsChange} mb={4} />
         {detailsError && <Text color="red.500">100文字以内で入力してください。</Text>}
 
         <Stack direction="row" justify="center" spacing={4}>
-          <Button mt={7} mb={10} colorScheme="teal" variant="solid" onClick={onClick}>
+          <Button mt={7} mb={10} colorScheme="teal" variant="solid" onClick={onClick} disabled>
             追加
           </Button>
         </Stack>

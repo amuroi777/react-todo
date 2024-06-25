@@ -13,7 +13,9 @@ const Todo = () => {
 
   const onClickAdd = () => {
     if (todoText === "" || details === "") return;
-    const newTodo = { id: serialId, text: todoText, details: details, status: "notStarted" };
+    if (incompleteTodos.length >= 10) return;
+    const timeStamp = new Date().toLocaleString();
+    const newTodo = { id: serialId, text: todoText, details: details, status: "notStarted", created: timeStamp };
     const newTodos = [...incompleteTodos, newTodo];
 
     setIncompleteTodos(newTodos);
@@ -36,10 +38,14 @@ const Todo = () => {
     setIncompleteTodos(incompleteTodos.map((todo) => (todo.id === id ? { ...todo, status: newStatus } : todo)));
   };
 
+  const isMaxLimitIncompleteTodos = incompleteTodos.length >= 10;
+
   return (
     <>
-      <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} details={details} onChangeDetails={onChangeDetails} />
-      <StatusTodo todos={incompleteTodos} setTodos={setIncompleteTodos} />
+      <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} details={details} onChangeDetails={onChangeDetails} disabled={isMaxLimitIncompleteTodos} />
+      {isMaxLimitIncompleteTodos && <p style={{ color: "red" }}>10件以上は登録できません</p>}
+
+      <StatusTodo todos={incompleteTodos} setTodos={setIncompleteTodos} onClickDelete={onClickDelete} onSaveEdit={onSaveEdit} onStatusChange={onStatusChange} />
     </>
   );
 };
